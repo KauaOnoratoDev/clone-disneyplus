@@ -1,6 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
     const buttons = document.querySelectorAll('[data-tab-button]');
     const questions = document.querySelectorAll('[data-faq-question]');
+    const heroSection = document.querySelector('.hero').clientHeight;
+
+    window.addEventListener('scroll', function() {
+        if (window.scrollY < heroSection) {
+            ocultaElementos();
+        } else {
+            exibeElementos();
+        }
+    })
+
+
 
     for (let i = 0; i < buttons.length; i++) {
         buttons[i].addEventListener('click', function(button) {
@@ -38,4 +49,14 @@ function removeBotaoAtivo() {
     for (let i = 0; i < buttons.length; i++) {
         buttons[i].classList.remove('shows__tabs__button--is-active')
     }
+}
+
+function ocultaElementos() {
+    const header = document.querySelector('.header')
+    header.classList.add('header--is-hidden')
+}
+
+function exibeElementos() {
+    const header = document.querySelector('.header')
+    header.classList.remove('header--is-hidden')
 }
